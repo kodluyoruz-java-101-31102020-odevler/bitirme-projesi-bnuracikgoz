@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+	  	xmlns="http://www.w3c.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Books</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/shards.min.css">
+    </head>
+<body>
+ 	<div th:switch="${books}" class="container my-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 th:case="null">No books yet!</h2>
+                    <div th:case="*">
+                     <div> <h2> Kayıtlı Kitaplar :
+		   				<input type="text"  id="bk_title" size="20" height="10" required />
+		    					&nbsp;
+		    					<a href="/pages/books/list"><input type="submit" value="Search" /></a></h2>
+						</div>
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>AuthorName</th>
+                                    <th>PubDate</th>
+                                    <th>Description</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="books : ${books}">
+                                    <td th:text="${books.bkId}"></td>
+                                    <td th:text="${books.bkTitle}"></td>
+                                    <td th:text="${books.authorName}"></td>
+                                    <td th:text="${books.bkPublicationDate}"></td>
+                                    <td th:text="${books.bkDescription}"></td>
+                                    <td th:text="${books.bkNote}"></td>  
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>      
+                    <p class="my-5"><a href="/pages/books" class="btn btn-primary"><i class="fa fa-plus ml-2"></i></a></p>
+                </div>
+            </div>
+        </div>
+     
+                       
+</body>
+</html>
